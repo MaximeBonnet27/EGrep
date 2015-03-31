@@ -45,7 +45,7 @@ public class Automate implements Serializable {
       char caractere = mot.charAt(indexActuel);
       boolean match = false;
       for(Transition transition : etatActuel.getTransitions()){
-        if(transition.getEtiquette() == caractere){
+        if(transition.estDansEtiquette(caractere)){
           match = match || verifierMotRecurence(mot, transition.getArrivee(), indexActuel + 1);
         }
         else if(transition.isEpsilonTransition()){

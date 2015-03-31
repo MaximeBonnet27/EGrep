@@ -137,5 +137,22 @@ public class TestsA {
     assertTrue(a.verifierMot("QSQSDAAQSMDLKQSDMA"));
   }
 
+  @Test 
+  public void testQ(){
+	    Automate a = AutomateFactory.createAutomateExempleQ();
+	    System.out.println(a);
+	    assertTrue(a.verifierMot("aqsdqsd"));
+	    assertTrue(a.verifierMot("eddd"));
+	    assertFalse(a.verifierMot("qmdlqsd"));
+  }
+  @Test 
+  public void testR(){
+	    Automate a = AutomateFactory.createAutomateExempleR();
+	    System.out.println(a);
+	    assertFalse(a.verifierMot("aaaazzzzzee"));
+	    assertFalse(a.verifierMot("zzzzz"));
+	    assertTrue(a.verifierMot("qsdqslkdjsqd"));
+  }
+  
   
 }

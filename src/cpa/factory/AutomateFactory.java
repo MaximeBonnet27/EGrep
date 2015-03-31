@@ -37,6 +37,13 @@ public class AutomateFactory {
     depart.addTransition(t);
     return t;
   }
+  
+  public static Transition createTransitionListe(Etat depart, Etat arrivee, ArrayList<Character> l){
+	    Transition t = new Transition(depart, arrivee, l);
+	    depart.addTransition(t);
+	    return t;
+	  }
+
 
   public static Automate createAutomate(char c){
     Etat ei = new Etat();
@@ -99,6 +106,27 @@ public class AutomateFactory {
   }
   
 
+  public static Automate createListeAutomate(ArrayList<Character> liste){
+	    Etat ei = new Etat();
+	    Etat ef = new Etat();
+	    ArrayList<Etat> etats = new ArrayList<Etat>();
+	    ArrayList<Etat> etatFinal = new ArrayList<Etat>();
+	    createTransitionListe(ei, ef, liste);
+	    etats.add(ei);
+	    etats.add(ef);
+	    etatFinal.add(ef);
+	    return new Automate(ei, etatFinal, etats);
+  }
+  public static Automate createListeInverseAutomate(ArrayList<Character> liste){
+	  ArrayList<Character> complementaire = new ArrayList<Character>();
+	  for(char c = (char) 32; c <= (char) 126; c++){
+		  if(!liste.contains(c)){
+			  complementaire.add(c);
+		  }
+	  }
+	  return createListeAutomate(complementaire);
+  }
+  
   public static Automate createConcatenation(Automate automateA, Automate automateB){
     for(Etat etatFinalA : automateA.getEtatsFinaux()){
       createEpsilonTransition(etatFinalA, automateB.getEtatInitial());
@@ -310,4 +338,19 @@ public class AutomateFactory {
   public static Automate createAutomateExempleP(){
     return createConcatenation(createAutomate('A'), createAutomateFin());
   }
+  public static Automate createAutomateExempleQ(){
+	  ArrayList<Character> l = new ArrayList<Character>();
+	  l.add('a');
+	  l.add('z');
+	  l.add('e');
+	  return createListeAutomate(l);
+  }
+  public static Automate createAutomateExempleR(){
+	  ArrayList<Character> l = new ArrayList<Character>();
+	  l.add('a');
+	  l.add('z');
+	  l.add('e');
+	  return createListeInverseAutomate(l);
+  }
+
 }

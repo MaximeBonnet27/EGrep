@@ -14,6 +14,16 @@ import cpa.factory.AutomateFactory;
 %type <obj> one_char_or_coll_elem_ERE
 %type <sval> ERE_dupl_symbol
 
+%type <obj> bracket_expression
+%type <obj> matching_list
+%type <obj> nonmatching_list
+%type <obj> bracket_list
+%type <obj> follow_list
+%type <obj> expression_term
+%type <obj> range_expression
+%type <obj> single_expression
+%type <obj> start_range
+%type <obj> end_range
 %start  extended_reg_exp
 %%
 
@@ -46,6 +56,7 @@ ERE_expression     : one_char_or_coll_elem_ERE { $$ = $1;}
 one_char_or_coll_elem_ERE  : ORD_CHAR { $$ =  AutomateFactory.createAutomate($1.charAt(0));}
 				   | QUOTED_CHAR { $$ = AutomateFactory.createAutomate($1.charAt(1)); }
 				   | '.'  { $$ = AutomateFactory.createAutomatePoint(); }
+                   | bracket_expression { $$ = $1; }
                    ;
 ERE_dupl_symbol    : '*' { $$ = "*"; }
 				   | '+' { $$ = "+"; }
@@ -55,9 +66,40 @@ ERE_dupl_symbol    : '*' { $$ = "*"; }
 				   | '{' ORD_CHAR ',' ORD_CHAR '}' { $$ = "i" + $2 + "," + $4;}
 				   ;
 				   
-				   
-				   
-				   
+/* --------------------------------------------
+            Bracket Expression
+------------------------------------------- */
+bracket_expression : '[' matching_list ']' { $$ = AutomateFactory.createListeAutomate((ArrayList<Character>) $2); } 
+               | '[' nonmatching_list ']' { $$ = AutomateFactory.createListeInverseAutomate((ArrayList<Character>) $2); }  
+               ;
+matching_list  : bracket_list { $$ = $1; }
+               ;
+nonmatching_list : '^' bracket_list { $$ = $2; }
+               ;
+bracket_list   : follow_list { $$ = $1; }
+               ;
+follow_list    :             expression_term { $$ = $1; }
+               | follow_list expression_term { $$ = ((ArrayList<Character>) $2).addAll((ArrayList<Character>)$1); }
+               ;
+expression_term : single_expression { $$ = $1; }
+               | range_expression { $$ = $1; }
+               ;
+single_expression : end_range { $$ = $1; }
+               ;
+range_expression : start_range end_range {
+			char debut = ((ArrayList<Character>) $1).get(0);
+			char fin = ((ArrayList<Character>) $2).get(0);
+			ArrayList<Character> l = new ArrayList<Character>();
+			for(char c = debut; c <= fin; c++){
+				l.add(c);
+			}
+			$$ = l;
+		}
+               ;
+start_range    : end_range '-' { $$ = $1;}
+               ;
+end_range      : ORD_CHAR { $$ = new ArrayList<Character>($1.charAt(0)); }
+               ;   
 %%
 
 private Yylex lexer;
