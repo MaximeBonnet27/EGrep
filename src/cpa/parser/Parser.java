@@ -328,7 +328,7 @@ final static String yyrule[] = {
 "end_range : ORD_CHAR",
 };
 
-//#line 104 "Lexer_Parser/egrep.y"
+//#line 108 "Lexer_Parser/egrep.y"
 
 private Yylex lexer;
 
@@ -624,15 +624,15 @@ case 21:
 break;
 case 22:
 //#line 75 "Lexer_Parser/egrep.y"
-{ yyval.obj = val_peek(0).obj; }
+{ yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 23:
 //#line 77 "Lexer_Parser/egrep.y"
-{ yyval.obj = val_peek(0).obj; }
+{ yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 24:
 //#line 79 "Lexer_Parser/egrep.y"
-{ yyval.obj = val_peek(0).obj; }
+{ yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 25:
 //#line 81 "Lexer_Parser/egrep.y"
@@ -640,19 +640,19 @@ case 25:
 break;
 case 26:
 //#line 82 "Lexer_Parser/egrep.y"
-{ yyval.obj = ((ArrayList<Character>) val_peek(0).obj).addAll((ArrayList<Character>)val_peek(1).obj); }
+{ yyval.obj = ((ArrayList<Character>) val_peek(1).obj).addAll((ArrayList<Character>)val_peek(0).obj); }
 break;
 case 27:
 //#line 84 "Lexer_Parser/egrep.y"
-{ yyval.obj = val_peek(0).obj; }
+{ yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 28:
 //#line 85 "Lexer_Parser/egrep.y"
-{ yyval.obj = val_peek(0).obj; }
+{ yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 29:
 //#line 87 "Lexer_Parser/egrep.y"
-{ yyval.obj = val_peek(0).obj; }
+{ yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 30:
 //#line 89 "Lexer_Parser/egrep.y"
@@ -663,18 +663,22 @@ case 30:
 			for(char c = debut; c <= fin; c++){
 				l.add(c);
 			}
-			yyval.obj = l;
+			yyval.obj = (ArrayList<Character>)l;
 		}
 break;
 case 31:
 //#line 99 "Lexer_Parser/egrep.y"
-{ yyval.obj = val_peek(1).obj;}
+{ yyval.obj = (ArrayList<Character>)val_peek(1).obj;}
 break;
 case 32:
 //#line 101 "Lexer_Parser/egrep.y"
-{ yyval.obj = new ArrayList<Character>(val_peek(0).sval.charAt(0)); }
+{ 
+	ArrayList<Character> l = new ArrayList<Character>();
+		l.add(val_peek(0).sval.charAt(0)); 
+		System.out.println(l.get(0));
+		yyval.obj = l;}
 break;
-//#line 600 "Parser.java"
+//#line 604 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

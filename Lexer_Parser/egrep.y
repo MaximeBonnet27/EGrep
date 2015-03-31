@@ -72,19 +72,19 @@ ERE_dupl_symbol    : '*' { $$ = "*"; }
 bracket_expression : '[' matching_list ']' { $$ = AutomateFactory.createListeAutomate((ArrayList<Character>) $2); } 
                | '[' nonmatching_list ']' { $$ = AutomateFactory.createListeInverseAutomate((ArrayList<Character>) $2); }  
                ;
-matching_list  : bracket_list { $$ = $1; }
+matching_list  : bracket_list { $$ = (ArrayList<Character>)$1; }
                ;
-nonmatching_list : '^' bracket_list { $$ = $2; }
+nonmatching_list : '^' bracket_list { $$ = (ArrayList<Character>)$2; }
                ;
-bracket_list   : follow_list { $$ = $1; }
+bracket_list   : follow_list { $$ = (ArrayList<Character>)$1; }
                ;
 follow_list    :             expression_term { $$ = $1; }
-               | follow_list expression_term { $$ = ((ArrayList<Character>) $2).addAll((ArrayList<Character>)$1); }
+               | follow_list expression_term { $$ = ((ArrayList<Character>) $1).addAll((ArrayList<Character>)$2); }
                ;
-expression_term : single_expression { $$ = $1; }
-               | range_expression { $$ = $1; }
+expression_term : single_expression { $$ = (ArrayList<Character>)$1; }
+               | range_expression { $$ = (ArrayList<Character>)$1; }
                ;
-single_expression : end_range { $$ = $1; }
+single_expression : end_range { $$ = (ArrayList<Character>)$1; }
                ;
 range_expression : start_range end_range {
 			char debut = ((ArrayList<Character>) $1).get(0);
@@ -93,12 +93,16 @@ range_expression : start_range end_range {
 			for(char c = debut; c <= fin; c++){
 				l.add(c);
 			}
-			$$ = l;
+			$$ = (ArrayList<Character>)l;
 		}
                ;
-start_range    : end_range '-' { $$ = $1;}
+start_range    : end_range '-' { $$ = (ArrayList<Character>)$1;}
                ;
-end_range      : ORD_CHAR { $$ = new ArrayList<Character>($1.charAt(0)); }
+end_range      : ORD_CHAR { 
+	ArrayList<Character> l = new ArrayList<Character>();
+		l.add($1.charAt(0)); 
+		System.out.println(l.get(0));
+		$$ = l;}
                ;   
 %%
 

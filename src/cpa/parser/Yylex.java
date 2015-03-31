@@ -35,7 +35,7 @@ class Yylex {
    */
   private static final String ZZ_CMAP_PACKED = 
     "\11\0\2\2\2\0\1\2\22\0\1\2\3\0\1\4\3\0\1\4"+
-    "\1\4\1\4\1\4\1\5\1\0\1\4\1\0\12\1\3\0\1\1"+
+    "\1\4\1\4\1\4\1\5\1\5\1\4\1\0\12\1\3\0\1\1"+
     "\1\0\1\4\1\0\32\1\1\4\1\3\1\7\1\4\1\1\1\0"+
     "\32\1\1\4\1\4\1\5\42\0\1\6\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff6f\0";
 
@@ -553,7 +553,7 @@ public Yylex(java.io.Reader r, Parser yyparser){
 
       switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
         case 1: 
-          { System.err.println("Unexpected char : '" + yytext() + "'");
+          { System.err.println("JFLEX : Unexpected char : '" + yytext() + "'");
           }
         case 6: break;
         case 2: 
