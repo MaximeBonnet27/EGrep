@@ -61,6 +61,12 @@ public class Transition implements Serializable{
 	}
 
 	public boolean estDansEtiquette(char caractere) {
+		//System.out.print("LISTE : ");
+//		for(Character c : etiquettes){
+//			System.out.print(" " + c);
+//		}
+		//System.out.println();
+		//System.out.println("CHAR : " + caractere);
 		return etiquettes.contains(caractere) || etiquette == caractere;
 	}
 

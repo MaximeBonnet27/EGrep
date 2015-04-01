@@ -21,5 +21,7 @@ SPACE = [ \n\r\t]
 "\\^" | "\\." | "\\[" | "\\$" | "\\(" | "\\)" | "\\|" | "\\*" | "\\+" | "\\+" | "\\?" | "\\{" | "\\\\" {yyparser.yylval = new ParserVal(yytext()); return Parser.QUOTED_CHAR;} 
 {ORD_CHAR} {yyparser.yylval = new ParserVal(yytext()); return Parser.ORD_CHAR; }
 "^" | "$" | "(" | ")" | "*" | "." | "|" | "+" | "?" | "{" | "}" | "," | "[" | "]" | "-" {return (int) yycharat(0);}
-{SPACE} {}
-[^] { System.err.println("JFLEX : Unexpected char : '" + yytext() + "'"); }
+']' {return (int) yycharat(0);}
+{SPACE} {return (int) yycharat(0);}
+[^] { //System.err.println("JFLEX : Unexpected char : '" + yytext() + "'");
+	return (int) yycharat(0); }

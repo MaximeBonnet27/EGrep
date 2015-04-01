@@ -77,9 +77,14 @@ matching_list  : bracket_list { $$ = (ArrayList<Character>)$1; }
 nonmatching_list : '^' bracket_list { $$ = (ArrayList<Character>)$2; }
                ;
 bracket_list   : follow_list { $$ = (ArrayList<Character>)$1; }
+	       | follow_list '-' { $$ = (ArrayList<Character>)$1; }
+
                ;
-follow_list    :             expression_term { $$ = $1; }
-               | follow_list expression_term { $$ = ((ArrayList<Character>) $1).addAll((ArrayList<Character>)$2); }
+follow_list    :             expression_term { $$ = (ArrayList<Character>) $1; }
+               | follow_list expression_term {
+	((ArrayList<Character>) $1).addAll((ArrayList<Character>)$2); 
+		$$ = $1;
+}
                ;
 expression_term : single_expression { $$ = (ArrayList<Character>)$1; }
                | range_expression { $$ = (ArrayList<Character>)$1; }
@@ -93,16 +98,23 @@ range_expression : start_range end_range {
 			for(char c = debut; c <= fin; c++){
 				l.add(c);
 			}
-			$$ = (ArrayList<Character>)l;
+			$$ = (ArrayList<Character>) l;
 		}
+	       | start_range '-' {
+			char debut = ((ArrayList<Character>) $1).get(0);
+			ArrayList<Character> l = new ArrayList<Character>();
+			for(char c = debut; c <= 126; c++){
+				l.add(c);
+			}
+			$$ = (ArrayList<Character>) l;
+		} 
                ;
 start_range    : end_range '-' { $$ = (ArrayList<Character>)$1;}
                ;
 end_range      : ORD_CHAR { 
 	ArrayList<Character> l = new ArrayList<Character>();
 		l.add($1.charAt(0)); 
-		System.out.println(l.get(0));
-		$$ = l;}
+		$$ = (ArrayList<Character>) l;}
                ;   
 %%
 
@@ -142,6 +154,22 @@ public Automate getAutomateFromFile(String filename){
 	}
 	yyparser.yyparse();
 	return resultat;
+}
+
+public Automate getAutomateFromString(String chaine){
+	Automate a = null;	
+	try{
+			File temp = new File("tempRegex.tmp");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
+			bw.write(chaine);
+			bw.close();
+			a = getAutomateFromFile("tempRegex.tmp");
+			temp.deleteOnExit();
+
+	} catch(Exception e){
+		e.printStackTrace();
+	}
+	return a;
 }
 
 	

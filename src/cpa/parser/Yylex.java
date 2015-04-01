@@ -34,10 +34,10 @@ class Yylex {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\2\2\2\0\1\2\22\0\1\2\3\0\1\4\3\0\1\4"+
-    "\1\4\1\4\1\4\1\5\1\5\1\4\1\0\12\1\3\0\1\1"+
-    "\1\0\1\4\1\0\32\1\1\4\1\3\1\7\1\4\1\1\1\0"+
-    "\32\1\1\4\1\4\1\5\42\0\1\6\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff6f\0";
+    "\11\0\2\2\2\0\1\2\22\0\1\2\3\0\1\4\2\0\1\7"+
+    "\1\4\1\4\1\4\1\4\1\2\1\2\1\4\1\0\12\1\3\0"+
+    "\1\1\1\0\1\4\1\0\32\1\1\4\1\3\1\6\1\4\1\1"+
+    "\1\0\32\1\1\4\1\4\1\2\42\0\1\5\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff6f\0";
 
   /** 
    * Translates characters to character classes
@@ -50,10 +50,10 @@ class Yylex {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\1\1\4\1\1\1\5";
+    "\1\0\1\1\1\2\1\3\3\1\1\4\1\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[8];
+    int [] result = new int[9];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -78,10 +78,11 @@ class Yylex {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\10\0\10\0\10\0\20\0\10\0\30\0\10";
+    "\0\0\0\10\0\10\0\10\0\20\0\30\0\40\0\10"+
+    "\0\50";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[8];
+    int [] result = new int[9];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -104,11 +105,11 @@ class Yylex {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\2\6\1\7\1\2\13\0"+
-    "\2\10\12\0\1\6";
+    "\1\2\1\3\1\4\1\5\1\4\1\6\1\2\1\7"+
+    "\13\0\2\10\11\0\1\4\7\0\1\11\10\0\1\4";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[32];
+    int [] result = new int[48];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -146,10 +147,10 @@ class Yylex {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\3\11\1\1\1\11\1\1\1\11";
+    "\1\0\3\11\3\1\1\11\1\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[8];
+    int [] result = new int[9];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -252,7 +253,7 @@ public Yylex(java.io.Reader r, Parser yyparser){
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 106) {
+    while (i < 108) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -553,25 +554,22 @@ public Yylex(java.io.Reader r, Parser yyparser){
 
       switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
         case 1: 
-          { System.err.println("JFLEX : Unexpected char : '" + yytext() + "'");
+          { //System.err.println("JFLEX : Unexpected char : '" + yytext() + "'");
+	return (int) yycharat(0);
           }
-        case 6: break;
+        case 5: break;
         case 2: 
           { yyparser.yylval = new ParserVal(yytext()); return Parser.ORD_CHAR;
           }
-        case 7: break;
+        case 6: break;
         case 3: 
-          { 
-          }
-        case 8: break;
-        case 4: 
           { return (int) yycharat(0);
           }
-        case 9: break;
-        case 5: 
+        case 7: break;
+        case 4: 
           { yyparser.yylval = new ParserVal(yytext()); return Parser.QUOTED_CHAR;
           }
-        case 10: break;
+        case 8: break;
         default: 
           if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
             zzAtEOF = true;

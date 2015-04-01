@@ -166,71 +166,71 @@ public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
     0,    0,    1,    1,    2,    2,    2,    2,    2,    3,
     3,    3,    3,    4,    4,    4,    4,    4,    4,    5,
-    5,    6,    7,    8,    9,    9,   10,   10,   12,   11,
-   13,   14,
+    5,    6,    7,    8,    8,    9,    9,   10,   10,   12,
+   11,   11,   13,   14,
 };
 final static short yylen[] = {                            2,
     1,    3,    1,    2,    1,    1,    1,    3,    2,    1,
     1,    1,    1,    1,    1,    1,    3,    4,    5,    3,
-    3,    1,    2,    1,    1,    2,    1,    1,    1,    2,
-    2,    1,
+    3,    1,    2,    1,    2,    1,    2,    1,    1,    1,
+    2,    2,    2,    1,
 };
 final static short yydefred[] = {                         0,
    10,   11,    6,    7,    0,   12,    0,    0,    0,    0,
-    5,   13,    0,   32,    0,    0,    0,   22,    0,   25,
-   28,   27,    0,    0,    0,    0,   14,   15,   16,    0,
-    9,    8,   23,   20,   21,   26,   30,   31,    0,    0,
-   17,    0,    0,   18,   19,
+    5,   13,    0,   34,    0,    0,    0,   22,    0,   26,
+   29,   28,    0,    0,    0,    0,   14,   15,   16,    0,
+    9,    8,   23,   20,   21,   25,   27,   32,   31,   33,
+    0,    0,   17,    0,    0,   18,   19,
 };
 final static short yydgoto[] = {                          8,
     9,   10,   11,   31,   12,   16,   17,   18,   19,   20,
    21,   22,   23,   24,
 };
 final static short yysindex[] = {                       -36,
-    0,    0,    0,    0,  -36,    0,  -89, -113,  -36,  -30,
-    0,    0,  -33,    0, -243,  -77,  -76,    0, -243,    0,
-    0,    0, -243,  -27,  -36,  -30,    0,    0,    0, -238,
-    0,    0,    0,    0,    0,    0,    0,    0,  -36,  -29,
-    0, -119, -105,    0,    0,
+    0,    0,    0,    0,  -36,    0,  -86, -109,  -36,  -25,
+    0,    0,  -28,    0, -241,  -74,  -73,    0,  -43,    0,
+    0,    0,  -40,  -24,  -36,  -25,    0,    0,    0, -235,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+  -36,  -32,    0, -118, -102,    0,    0,
 };
 final static short yyrindex[] = {                         0,
-    0,    0,    0,    0,    0,    0,    0,    0,    7,    1,
-    0,    0,    0,    0,    0,    0,    0,    0,  -71,    0,
-    0,    0,    0,  -91,    0,    3,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    9,    0,
-    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    9,    1,
+    0,    0,    0,    0,    0,    0,    0,    0,  -69,    0,
+    0,    0,    0,  -87,    0,    3,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+   11,    0,    0,    0,    0,    0,    0,
 };
-final static short yygindex[] = {                        18,
-   -1,   12,    0,    0,    0,    0,    0,   10,    0,    8,
-    0,    0,    0,    5,
+final static short yygindex[] = {                        20,
+    2,    5,    0,    0,    0,    0,    0,   13,    0,    7,
+    0,    0,    0,    6,
 };
 final static int YYTABLESIZE=261;
 static short yytable[];
 static { yytable();}
 static void yytable(){
 yytable = new short[]{                          4,
-    3,   29,    4,    5,   15,   44,    1,   32,    2,    6,
-   25,   27,   28,   14,   42,   34,   35,   38,   40,   45,
-   26,   24,   13,   39,   33,    0,   36,   37,    0,    0,
-    0,    0,   29,    0,    0,    0,    3,    0,    4,    0,
-    3,    3,    4,    4,    0,    0,    3,    1,    4,    2,
-   26,    0,    0,    0,    7,    0,    0,    3,    0,    0,
+    3,   36,    4,    5,   38,   30,   46,   15,    1,    6,
+    2,   44,   32,   26,   25,   14,   27,   28,   34,   35,
+   40,   42,   47,   24,   13,   37,   41,   33,   39,    0,
+    0,    0,    0,    0,    0,    0,    3,   29,    4,    0,
+    3,    3,    4,    4,    0,   26,    3,    0,    4,    1,
+    0,    2,    0,    0,    7,    0,    0,    3,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-   25,    3,   30,    4,    3,   41,    4,    0,    0,    0,
+    0,    3,   43,    4,    3,   25,    4,   30,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    3,    0,    4,    0,    0,    0,
-    1,    0,    2,    0,    0,    0,    0,   43,    0,    0,
+    0,    0,    1,    0,    2,    0,    0,    0,   45,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,   29,    0,   14,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,   30,
+   14,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,   14,    0,    0,   14,    0,    0,    0,
     1,    2,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -242,28 +242,28 @@ static short yycheck[];
 static { yycheck(); }
 static void yycheck() {
 yycheck = new short[] {                         36,
-    0,   93,    0,   40,   94,  125,    0,   41,    0,   46,
-  124,   42,   43,  257,   44,   93,   93,   45,  257,  125,
-    9,   93,    5,   25,   15,   -1,   19,   23,   -1,   -1,
-   -1,   -1,   63,   -1,   -1,   -1,   36,   -1,   36,   -1,
-   40,   41,   40,   41,   -1,   -1,   46,   41,   46,   41,
-   39,   -1,   -1,   -1,   91,   -1,   -1,   94,   -1,   -1,
+    0,   45,    0,   40,   45,   93,  125,   94,    0,   46,
+    0,   44,   41,    9,  124,  257,   42,   43,   93,   93,
+   45,  257,  125,   93,    5,   19,   25,   15,   23,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   36,   63,   36,   -1,
+   40,   41,   40,   41,   -1,   41,   46,   -1,   46,   41,
+   -1,   41,   -1,   -1,   91,   -1,   -1,   94,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-  124,   91,  123,   91,   94,  125,   94,   -1,   -1,   -1,
+   -1,   91,  125,   91,   94,  124,   94,  123,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,  124,   -1,  124,   -1,   -1,   -1,
-  124,   -1,  124,   -1,   -1,   -1,   -1,  257,   -1,   -1,
+   -1,   -1,  124,   -1,  124,   -1,   -1,   -1,  257,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,  257,   -1,  257,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,  257,
+  257,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,   -1,  257,   -1,   -1,  257,   -1,   -1,   -1,
   257,  258,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -318,17 +318,19 @@ final static String yyrule[] = {
 "matching_list : bracket_list",
 "nonmatching_list : '^' bracket_list",
 "bracket_list : follow_list",
+"bracket_list : follow_list '-'",
 "follow_list : expression_term",
 "follow_list : follow_list expression_term",
 "expression_term : single_expression",
 "expression_term : range_expression",
 "single_expression : end_range",
 "range_expression : start_range end_range",
+"range_expression : start_range '-'",
 "start_range : end_range '-'",
 "end_range : ORD_CHAR",
 };
 
-//#line 108 "Lexer_Parser/egrep.y"
+//#line 120 "Lexer_Parser/egrep.y"
 
 private Yylex lexer;
 
@@ -368,9 +370,25 @@ public Automate getAutomateFromFile(String filename){
 	return resultat;
 }
 
+public Automate getAutomateFromString(String chaine){
+	Automate a = null;	
+	try{
+			File temp = new File("tempRegex.tmp");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
+			bw.write(chaine);
+			bw.close();
+			a = getAutomateFromFile("tempRegex.tmp");
+			temp.deleteOnExit();
+
+	} catch(Exception e){
+		e.printStackTrace();
+	}
+	return a;
+}
+
 	
                
-//#line 301 "Parser.java"
+//#line 319 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -635,27 +653,34 @@ case 24:
 { yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 25:
-//#line 81 "Lexer_Parser/egrep.y"
-{ yyval.obj = val_peek(0).obj; }
+//#line 80 "Lexer_Parser/egrep.y"
+{ yyval.obj = (ArrayList<Character>)val_peek(1).obj; }
 break;
 case 26:
-//#line 82 "Lexer_Parser/egrep.y"
-{ yyval.obj = ((ArrayList<Character>) val_peek(1).obj).addAll((ArrayList<Character>)val_peek(0).obj); }
+//#line 83 "Lexer_Parser/egrep.y"
+{ yyval.obj = (ArrayList<Character>) val_peek(0).obj; }
 break;
 case 27:
 //#line 84 "Lexer_Parser/egrep.y"
-{ yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
+{
+	((ArrayList<Character>) val_peek(1).obj).addAll((ArrayList<Character>)val_peek(0).obj); 
+		yyval.obj = val_peek(1).obj;
+}
 break;
 case 28:
-//#line 85 "Lexer_Parser/egrep.y"
+//#line 89 "Lexer_Parser/egrep.y"
 { yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 29:
-//#line 87 "Lexer_Parser/egrep.y"
+//#line 90 "Lexer_Parser/egrep.y"
 { yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
 break;
 case 30:
-//#line 89 "Lexer_Parser/egrep.y"
+//#line 92 "Lexer_Parser/egrep.y"
+{ yyval.obj = (ArrayList<Character>)val_peek(0).obj; }
+break;
+case 31:
+//#line 94 "Lexer_Parser/egrep.y"
 {
 			char debut = ((ArrayList<Character>) val_peek(1).obj).get(0);
 			char fin = ((ArrayList<Character>) val_peek(0).obj).get(0);
@@ -663,22 +688,32 @@ case 30:
 			for(char c = debut; c <= fin; c++){
 				l.add(c);
 			}
-			yyval.obj = (ArrayList<Character>)l;
+			yyval.obj = (ArrayList<Character>) l;
 		}
 break;
-case 31:
-//#line 99 "Lexer_Parser/egrep.y"
+case 32:
+//#line 103 "Lexer_Parser/egrep.y"
+{
+			char debut = ((ArrayList<Character>) val_peek(1).obj).get(0);
+			ArrayList<Character> l = new ArrayList<Character>();
+			for(char c = debut; c <= 126; c++){
+				l.add(c);
+			}
+			yyval.obj = (ArrayList<Character>) l;
+		}
+break;
+case 33:
+//#line 112 "Lexer_Parser/egrep.y"
 { yyval.obj = (ArrayList<Character>)val_peek(1).obj;}
 break;
-case 32:
-//#line 101 "Lexer_Parser/egrep.y"
+case 34:
+//#line 114 "Lexer_Parser/egrep.y"
 { 
 	ArrayList<Character> l = new ArrayList<Character>();
 		l.add(val_peek(0).sval.charAt(0)); 
-		System.out.println(l.get(0));
-		yyval.obj = l;}
+		yyval.obj = (ArrayList<Character>) l;}
 break;
-//#line 604 "Parser.java"
+//#line 639 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

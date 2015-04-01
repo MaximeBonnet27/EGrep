@@ -156,10 +156,44 @@ public class TestsB {
 	    Parser parser = new Parser();
 	    Automate a =  parser.getAutomateFromFile("examples/regex-16.ere");
 	    assertNotNull(a);
-	    assertFalse(a.verifierMot("wxcvb"));
+	    assertTrue(a.verifierMot("wxcvb"));
 	    assertTrue(a.verifierMot("bonnet"));
-	    assertTrue(a.verifierMot("qsdlqsdqsdk"));
+	    assertFalse(a.verifierMot("qsdlqsdqsd"));
 	    assertTrue(a.verifierMot("vinke"));
 
   }
+  
+  
+  @Test
+  public void testQ(){
+	    Parser parser = new Parser();
+	    Automate a =  parser.getAutomateFromFile("examples/regex-17.ere");
+	    assertNotNull(a);
+	    assertTrue(a.verifierMot("wxcvb"));
+	    assertTrue(a.verifierMot("bonnet"));
+	    assertFalse(a.verifierMot("12235412"));
+	    assertTrue(a.verifierMot("vinke"));
+
+  }
+  @Test
+  public void testR(){
+	    Parser parser = new Parser();
+	    Automate a =  parser.getAutomateFromFile("examples/regex-18.ere");
+	    assertNotNull(a);
+	    assertTrue(a.verifierMot("wxcb"));
+	    assertTrue(a.verifierMot("bonnt"));
+	    assertFalse(a.verifierMot("12235412"));
+	    assertTrue(a.verifierMot("vinke"));
+
+  }
+  @Test
+  public void testS(){
+	    Parser parser = new Parser();
+	    Automate a =  parser.getAutomateFromFile("examples/regex-19.ere");
+	    assertNotNull(a);
+	    assertTrue(a.verifierMot("QADcjdkq"));
+	    assertTrue(a.verifierMot("Dccmdd"));
+	    assertFalse(a.verifierMot("DDDDlld"));
+  }
+  
 }

@@ -149,9 +149,10 @@ public class TestsA {
   public void testR(){
 	    Automate a = AutomateFactory.createAutomateExempleR();
 	    System.out.println(a);
-	    assertFalse(a.verifierMot("aaaazzzzzee"));
-	    assertFalse(a.verifierMot("zzzzz"));
-	    assertTrue(a.verifierMot("qsdqslkdjsqd"));
+	    assertFalse(a.verifierMot("kevz"));
+	    assertTrue(a.verifierMot("bonnet"));
+	    assertTrue(a.verifierMot("qsdlzqsdqsdk"));
+	    assertTrue(a.verifierMot("vinke"));
   }
   
   

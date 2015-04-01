@@ -347,9 +347,10 @@ public class AutomateFactory {
   }
   public static Automate createAutomateExempleR(){
 	  ArrayList<Character> l = new ArrayList<Character>();
-	  l.add('a');
-	  l.add('z');
+	  l.add('k');
 	  l.add('e');
+	  l.add('v');
+	  l.add('z');
 	  return createListeInverseAutomate(l);
   }
 
