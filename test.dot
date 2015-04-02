@@ -1,0 +1,17 @@
+digraph automate{
+size="8,10";S0 -> S1[color=black, style=solid, label="A"];
+S1 -> S0[color=black, style=solid, label="\uffff"];
+S0 -> S1[color=black, style=solid, label="A"];
+S1 -> S0[color=black, style=solid, label="\uffff"];
+S0 -> S1[color=black, style=solid, label="A"];
+S1 -> S2[color=black, style=solid, label="\uffff"];
+S2 -> S3[color=black, style=solid, label="\uffff"];
+S3 -> S5[color=black, style=solid, label="\uffff"];
+S0 -> S1[color=black, style=solid, label="A"];
+S1 -> S0[color=black, style=solid, label="\uffff"];
+S1 -> S4[color=black, style=solid, label="\uffff"];
+S5 -> S4[color=black, style=solid, label="\uffff"];
+S5 -> S0[color=black, style=solid, label="\uffff"];
+S4 -> S6[color=black, style=solid, label="\uffff"];
+S6 -> S7[color=black, style=solid, label="b"];
+}
