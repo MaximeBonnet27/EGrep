@@ -20,6 +20,11 @@ public class Etat implements Serializable{
 		transitions.add(t);
 	}
 
+  public void supprimerTransition(Transition t) {
+    transitions.remove(t);
+  }
+
+	
 	public ArrayList<Transition> getTransitions() {
 		return transitions;
 	}  
@@ -71,4 +76,9 @@ public class Etat implements Serializable{
 		return sb.toString();
 	}
 
+
+
+
+	
+	
 }
