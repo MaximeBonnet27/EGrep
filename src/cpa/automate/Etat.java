@@ -66,7 +66,7 @@ public class Etat implements Serializable{
 	public String toDotFile(){
 		StringBuilder sb = new StringBuilder();
 		for(Transition t : transitions){
-			sb.append("S"+numero+" -> S" +t.getArrivee().getNumero()+ "[color=black, style=solid, label=\""+t.getEtiquette()+"\"];\n");
+			sb.append("S"+numero+" -> S" +t.getArrivee().getNumero()+ "[color=black, style=solid, label=\""+t.getAffichageEtiquette()+"\"];\n");
 		}
 		return sb.toString();
 	}

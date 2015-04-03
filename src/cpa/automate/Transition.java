@@ -9,7 +9,7 @@ public class Transition implements Serializable{
 	public static final char point = (char) -2;
 	public static final char debut = (char) -3;
 	public static final char fin = (char) -4;
-
+	public static final char nil = (char) -5;
 	private Etat depart;
 	private Etat arrivee;
 	private char etiquette;
@@ -28,6 +28,7 @@ public class Transition implements Serializable{
 		this.depart = depart;
 		this.arrivee = arrivee;
 		this.etiquettes = listeChar;
+		this.etiquette = nil;
 	}
 
 	public Etat getDepart() {
@@ -53,6 +54,25 @@ public class Transition implements Serializable{
 
 	public boolean isFinTransition(){
 		return etiquette == fin;
+	}
+	
+	public String getAffichageEtiquette(){
+		if(etiquette == nil){
+			return "liste";
+		}else{
+			if(etiquette == epsilon){
+				return "£";
+			}else if (etiquette == point){
+				return ".";
+			}
+			else if(etiquette == debut){
+				return "^";
+			}
+			else if(etiquette == fin){
+				return "$";
+			}
+		}
+		return "" + etiquette;
 	}
 
 	@Override
