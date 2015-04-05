@@ -9,25 +9,21 @@ public class Transition implements Serializable{
 	public static final char point = (char) -2;
 	public static final char debut = (char) -3;
 	public static final char fin = (char) -4;
-	public static final char nil = (char) -5;
 	private Etat depart;
 	private Etat arrivee;
-	private char etiquette;
-
 	private ArrayList<Character> etiquettes;
 
 	public Transition(Etat depart, Etat arrivee, char c) {
 		this.depart = depart;
 		this.arrivee = arrivee;
-		this.etiquette = c;
 		this.etiquettes = new ArrayList<Character>();
+		etiquettes.add(c);
 	}
 
 	public Transition(Etat depart, Etat arrivee, ArrayList<Character> listeChar){
 		this.depart = depart;
 		this.arrivee = arrivee;
 		this.etiquettes = listeChar;
-		this.etiquette = nil;
 	}
 
 	public Etat getDepart() {
@@ -36,53 +32,52 @@ public class Transition implements Serializable{
 	public Etat getArrivee() {
 		return arrivee;
 	}
-	public Object getEtiquette() {
-		if(etiquettes.isEmpty())
-			return etiquette;
+	public ArrayList<Character> getEtiquette() {
 		return etiquettes;
 	}
 	public boolean isEpsilonTransition(){
-		return etiquette == epsilon;
+		return etiquettes.get(0) == epsilon;
 	}
 
 	public boolean isPointTransition(){
-		return etiquette == point;
+		return etiquettes.get(0) == point;
 	}
 
 	public boolean isDebutTransition(){
-		return etiquette == debut;
+		return etiquettes.get(0) == debut;
 	}
 
 	public boolean isFinTransition(){
-		return etiquette == fin;
+		return etiquettes.get(0) == fin;
 	}
 
 	public String getAffichageEtiquette(){
-		if(etiquette == nil){
-			return "liste";
-		}else{
-			if(etiquette == epsilon){
+			if(isEpsilonTransition()){
 				return "£";
-			}else if (etiquette == point){
+			}else if (isPointTransition()){
 				return ".";
 			}
-			else if(etiquette == debut){
+			else if(isDebutTransition()){
 				return "^";
 			}
-			else if(etiquette == fin){
+			else if(isFinTransition()){
 				return "$";
 			}
+		StringBuilder sb = new StringBuilder();
+		for(Character c : etiquettes){
+		  if(c.equals('"')) sb.append("\\\" ");
+		  else sb.append(c + " ");
 		}
-		return "" + etiquette;
+		return sb.toString();
 	}
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
-		return new Transition((Etat) depart.clone(), (Etat) arrivee.clone(), etiquette);
+		return new Transition((Etat) depart.clone(), (Etat) arrivee.clone(), (ArrayList<Character>) etiquettes.clone());
 	}
 
 	public boolean estDansEtiquette(char caractere) {
-		return etiquettes.contains(caractere) || etiquette == caractere;
+		return etiquettes.contains(caractere);
 	}
 
 

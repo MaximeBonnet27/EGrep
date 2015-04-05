@@ -36,7 +36,7 @@ public class EpsilonTransitions {
 				for(Transition t : r.getTransitions()){
 					if(t.getDepart().equals(k)){
 						for(Etat q : listeQ){
-							q.addTransition(new Transition(q,t.getArrivee(),(char) t.getEtiquette()));
+							q.addTransition(new Transition(q,t.getArrivee(),(ArrayList<Character>) t.getEtiquette()));
 						}
 					}
 				}

@@ -17,7 +17,7 @@ public class MainDotFile {
 
 	public static void main(String[] args) {
 		Parser p = new Parser();
-		Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(p.getAutomateFromFile("examples/regex-15.ere")));
+		Automate a = EpsilonTransitions.eliminer(p.getAutomateFromString("a[^a-zA-Z]"));
 		System.out.println(a.toDotFile());
 	}
 	
