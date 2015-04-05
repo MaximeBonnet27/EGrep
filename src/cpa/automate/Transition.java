@@ -21,7 +21,6 @@ public class Transition implements Serializable{
 		this.arrivee = arrivee;
 		this.etiquette = c;
 		this.etiquettes = new ArrayList<Character>();
-		etiquettes.add(c);
 	}
 
 	public Transition(Etat depart, Etat arrivee, ArrayList<Character> listeChar){
@@ -37,8 +36,10 @@ public class Transition implements Serializable{
 	public Etat getArrivee() {
 		return arrivee;
 	}
-	public char getEtiquette() {
-		return etiquette;
+	public Object getEtiquette() {
+		if(etiquettes.isEmpty())
+			return etiquette;
+		return etiquettes;
 	}
 	public boolean isEpsilonTransition(){
 		return etiquette == epsilon;
@@ -55,7 +56,7 @@ public class Transition implements Serializable{
 	public boolean isFinTransition(){
 		return etiquette == fin;
 	}
-	
+
 	public String getAffichageEtiquette(){
 		if(etiquette == nil){
 			return "liste";
@@ -81,12 +82,6 @@ public class Transition implements Serializable{
 	}
 
 	public boolean estDansEtiquette(char caractere) {
-		//System.out.print("LISTE : ");
-//		for(Character c : etiquettes){
-//			System.out.print(" " + c);
-//		}
-		//System.out.println();
-		//System.out.println("CHAR : " + caractere);
 		return etiquettes.contains(caractere) || etiquette == caractere;
 	}
 

@@ -1,16 +1,19 @@
 package cpa.main;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
+import cpa.algorithmes.Determinisation;
 import cpa.algorithmes.EpsilonTransitions;
 import cpa.automate.Automate;
 import cpa.factory.AutomateFactory;
-import static org.junit.Assert.*;
 public class TestsA {
 
   @Test
   public void testA(){
-    Automate a = EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleA());
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleA()));
     System.out.println(a);
     assertTrue(a.verifierMot("ab"));
     assertFalse(a.verifierMot("a"));
@@ -20,7 +23,7 @@ public class TestsA {
   
   @Test
   public void testB(){
-    Automate a = EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleB());
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleB()));
     assertTrue(a.verifierMot("ca"));
     assertTrue(a.verifierMot("aba"));
     assertFalse(a.verifierMot("cb"));
@@ -29,7 +32,7 @@ public class TestsA {
   
   @Test
   public void testC(){
-    Automate a = EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleC());
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleC()));
     assertTrue(a.verifierMot("ab"));
     assertFalse(a.verifierMot("baaaa"));
     assertTrue(a.verifierMot("bbbbaaaaaaab"));
@@ -37,7 +40,7 @@ public class TestsA {
   
   @Test
   public void testD(){
-    Automate a = EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleD());
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleD()));
     assertTrue(a.verifierMot("ca"));
     assertTrue(a.verifierMot("aba"));
     assertFalse(a.verifierMot("cb"));
@@ -49,7 +52,7 @@ public class TestsA {
   
   @Test
   public void testE(){
-    Automate a = EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleE());
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleE()));
     assertTrue(a.verifierMot("a"));
     assertTrue(a.verifierMot("aaaaaaaaaaaaaaaaaaaaaaa"));
     assertTrue(a.verifierMot("bb"));
@@ -58,14 +61,14 @@ public class TestsA {
   
   @Test
   public void testF(){
-    Automate a = EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleF());
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleF()));
     System.out.println(a);
     assertTrue(a.verifierMot("F"));
     assertTrue(a.verifierMot("aaaF"));
   }
   @Test
   public void testG(){
-    Automate a = EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleG());
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleG()));
     System.out.println(a);
     assertTrue(a.verifierMot("ADDDDDDD"));
     assertTrue(a.verifierMot("AD"));
@@ -73,19 +76,19 @@ public class TestsA {
   }
   @Test
   public void testH(){
-    Automate a = EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleH());
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleH()));
     assertTrue(a.verifierMot("ADB"));
     assertTrue(a.verifierMot("AB"));
   }
   @Test
   public void testI(){
-    Automate a = AutomateFactory.createAutomateExempleI();
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleI()));
     assertTrue(a.verifierMot("BA"));
     assertFalse(a.verifierMot("A"));
   }
   @Test
   public void testJ(){
-    Automate a = AutomateFactory.createAutomateExempleJ();
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleJ()));
     assertTrue(a.verifierMot("aa"));
     assertFalse(a.verifierMot("a"));
     assertTrue(a.verifierMot("baab"));
@@ -93,7 +96,7 @@ public class TestsA {
   
   @Test
   public void testK(){
-    Automate a = AutomateFactory.createAutomateExempleK();
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleK()));
     assertTrue(a.verifierMot("bbMMM"));
     assertFalse(a.verifierMot("bMb"));
     assertTrue(a.verifierMot("bbMMMMbb"));
@@ -101,7 +104,7 @@ public class TestsA {
   
   @Test
   public void testL(){
-    Automate a = AutomateFactory.createAutomateExempleL();
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleL()));
     assertTrue(a.verifierMot("AAAb"));
     assertTrue(a.verifierMot("AAAAAAAAAAAb"));
     assertFalse(a.verifierMot("AAb"));
@@ -109,7 +112,7 @@ public class TestsA {
 
   @Test
   public void testM(){
-    Automate a = AutomateFactory.createAutomateExempleM();
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleM()));
     assertTrue(a.verifierMot("AAAb"));
     assertTrue(a.verifierMot("AAAAAAAAAAAb"));
     assertFalse(a.verifierMot("AAb"));
@@ -117,7 +120,7 @@ public class TestsA {
   }
   @Test 
   public void testN(){
-    Automate a = AutomateFactory.createAutomateExempleN();
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleN()));
     System.out.println(a);
     assertTrue(a.verifierMot("AxB"));
     assertFalse(a.verifierMot("AB"));
@@ -126,7 +129,7 @@ public class TestsA {
   
   @Test 
   public void testO(){
-    Automate a = AutomateFactory.createAutomateExempleO();
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleO()));
     System.out.println(a);
     assertTrue(a.verifierMot("AxB"));
     assertFalse(a.verifierMot("BA"));
@@ -134,7 +137,7 @@ public class TestsA {
   
   @Test 
   public void testP(){
-    Automate a = AutomateFactory.createAutomateExempleP();
+    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleP()));
     System.out.println(a);
     assertTrue(a.verifierMot("BA"));
     assertFalse(a.verifierMot("BAB"));
@@ -143,7 +146,7 @@ public class TestsA {
 
   @Test 
   public void testQ(){
-	    Automate a = AutomateFactory.createAutomateExempleQ();
+	    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleQ()));
 	    System.out.println(a);
 	    assertTrue(a.verifierMot("aqsdqsd"));
 	    assertTrue(a.verifierMot("eddd"));
@@ -151,7 +154,7 @@ public class TestsA {
   }
   @Test 
   public void testR(){
-	    Automate a = AutomateFactory.createAutomateExempleR();
+	    Automate a = Determinisation.powerSetConstruction(EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleR()));
 	    System.out.println(a);
 	    assertFalse(a.verifierMot("kevz"));
 	    assertTrue(a.verifierMot("bonnet"));

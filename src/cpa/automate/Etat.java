@@ -63,7 +63,7 @@ public class Etat implements Serializable{
 		Etat clone = new Etat();
 		clone.numero = numero;
 		for(Transition t : transitions){
-			clone.addTransition(new Transition(clone, (Etat) t.getArrivee().clone(), t.getEtiquette()));
+			clone.addTransition(new Transition(clone, (Etat) t.getArrivee().clone(), (char) t.getEtiquette()));
 		}
 		return clone;
 	}
