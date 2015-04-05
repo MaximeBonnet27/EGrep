@@ -47,15 +47,19 @@ public class Automate implements Serializable {
 			for(Transition transition : etatActuel.getTransitions()){
 				if(transition.estDansEtiquette(caractere)){
 					match = match || verifierMotRecurence(mot, transition.getArrivee(), indexActuel + 1);
+					if(match) return true;
 				}
 				else if(transition.isEpsilonTransition()){
 					match = match || verifierMotRecurence(mot, transition.getArrivee(), indexActuel);
+					if(match) return true;
 				}
 				else if(transition.isPointTransition()){
 					match = match || verifierMotRecurence(mot, transition.getArrivee(), indexActuel + 1);
+					if(match) return true;
 				}
 				else if(transition.isDebutTransition()){
 					match = match || (indexActuel == 0) && verifierMotRecurence(mot, transition.getArrivee(), indexActuel);
+					if(match) return true;
 				}
 			}
 			if (!match){
