@@ -17,7 +17,7 @@ public class MainDotFile {
 
 	public static void main(String[] args) {
 		Parser p = new Parser();
-		Automate a = Determinisation.recopiageDuCours(EpsilonTransitions.eliminer(p.getAutomateFromString("a*b*abbb")));
+		Automate a = (EpsilonTransitions.eliminer(p.getAutomateFromString("a*b*abbb")));
 		System.out.println(a.toDotFile());
 	}
 	

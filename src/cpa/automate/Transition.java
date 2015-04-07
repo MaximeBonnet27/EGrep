@@ -80,5 +80,16 @@ public class Transition implements Serializable{
 		return etiquettes.contains(caractere);
 	}
 
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Transition) {
+      Transition t = (Transition) obj;
+      return etiquettes.equals(t.getEtiquette()) && depart.equals(t.depart) && arrivee.equals(t.arrivee);
+    }
+    return false;
+  }
+
+	
+	
 
 }

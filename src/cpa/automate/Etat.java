@@ -94,6 +94,14 @@ public class Etat implements Serializable{
 		return sb.toString();
 	}
 
+  @Override
+  public boolean equals(Object obj) {
+    if(obj instanceof Etat){
+      return numero == ((Etat)obj).getNumero() || transitions.equals(transitions);
+    }
+    return false;
+  }
+
 
 
 
