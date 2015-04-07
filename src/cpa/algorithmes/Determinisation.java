@@ -16,44 +16,80 @@ import cpa.automate.Transition;
 public class Determinisation {
 
 	public static Automate powerSetConstruction(Automate a){
-		// CRAQUAGE
-		Etat q02 = a.getEtatInitial();
-		ArrayList<Etat> Q2 = new ArrayList<Etat>();
+		Etat nouvelEtatInitial = a.getEtatInitial();
+		ArrayList<Etat> nouveauxEtats = new ArrayList<Etat>();
 		ArrayList<Etat> etatsAConsiderer = new ArrayList<Etat>();
-		Q2.add(q02);
-		etatsAConsiderer.add(q02);
+		nouveauxEtats.add(nouvelEtatInitial);
+		etatsAConsiderer.add(nouvelEtatInitial);
 
 		while(!etatsAConsiderer.isEmpty()){
-			Etat x = etatsAConsiderer.get(0);
-			ArrayList<Etat> petitQ2 = new ArrayList<Etat>();
-			ArrayList<Object> sigma = new ArrayList<Object>();
-			for(Transition t : x.getTransitions()){
-				petitQ2.add(t.getArrivee());
-				sigma.add(t.getEtiquette());
-			}
-			for(int i = 0; i < petitQ2.size(); i++){
-				if(sigma.get(i) instanceof ArrayList<?>){
-					x.addTransition(new Transition(x, petitQ2.get(i), (ArrayList<Character>)sigma.get(i)));
-				}else{
-					x.addTransition(new Transition(x, petitQ2.get(i), (char) sigma.get(i)));
-				}
-			}
+			// Pop
+			Etat popped = etatsAConsiderer.get(0);
+			Etat x = new Etat(popped);
+			etatsAConsiderer.remove(popped);
 
-			for(Etat e : petitQ2){
-				if(Q2.contains(e)) continue;
+			ArrayList<Etat> etatsAccessibles = new ArrayList<Etat>();
+			ArrayList<ArrayList<Character>> etiquettesCorrespondantes = new ArrayList<ArrayList<Character>>();
+			for(Transition t : popped.getTransitions()){
+				etatsAccessibles.add(t.getArrivee());
+				etiquettesCorrespondantes.add(t.getEtiquette());
+			}
+			for(int i = 0; i < etatsAccessibles.size(); i++){
+				x.addTransition(new Transition(x, etatsAccessibles.get(i), etiquettesCorrespondantes.get(i)));
+			}
+			for(Etat e : etatsAccessibles){
+				if(nouveauxEtats.contains(e)) continue;
 				etatsAConsiderer.add(e);
 			}
 
-			Q2.addAll(petitQ2);
-			
-			etatsAConsiderer.remove(x);
+			nouveauxEtats.addAll(etatsAccessibles);
 		}
 		ArrayList<Etat> F = new ArrayList<>();
-		for(Etat e : Q2){
+		for(Etat e : nouveauxEtats){
 			if(a.getEtatsFinaux().contains(e))
 				F.add(e);
 		}
-		return new Automate(q02, F, Q2);
+		return new Automate(nouvelEtatInitial, F, nouveauxEtats);
 	}
 
+	public static Automate recopiageDuCours(Automate a){
+		Etat nouvelEtatInitial = a.getEtatInitial();
+		ArrayList<Etat> nouveauxEtats = new ArrayList<Etat>();
+		ArrayList<Etat> etatsAConsiderer = new ArrayList<Etat>();
+		ArrayList<Etat> nouveauxEtatsFinaux = new ArrayList<Etat>();
+		ArrayList<Etat> etatsDejaVus = new ArrayList<Etat>();
+		nouveauxEtats.add(nouvelEtatInitial);
+		etatsAConsiderer.add(nouvelEtatInitial);
+
+		while(!etatsAConsiderer.isEmpty()){
+			System.out.println(etatsAConsiderer.size());
+			// Pop
+			Etat popped = etatsAConsiderer.get(0);
+			Etat x = new Etat(popped);
+			etatsAConsiderer.remove(popped);
+			ArrayList<Etat> etatsAccessibles = new ArrayList<Etat>();
+			ArrayList<ArrayList<Character>> etiquettesCorrespondantes = new ArrayList<ArrayList<Character>>();
+			Etat nouvelEtatAPartirDeListe;
+			for(char c = (char) 32; c <= (char) 126; c++){
+				for(Transition t : popped.getTransitions()){
+					if(t.getEtiquette().contains(c)){
+						etatsAccessibles.add(t.getArrivee());
+						etiquettesCorrespondantes.add(t.getEtiquette());
+					}
+				}
+				
+				nouvelEtatAPartirDeListe = new Etat(etatsAccessibles);
+				
+				x.addTransition(new Transition(x, nouvelEtatAPartirDeListe, c));
+				// PUSH (...)
+				etatsDejaVus.add(nouvelEtatAPartirDeListe);
+				for(Etat e : etatsAccessibles){
+					if(!etatsDejaVus.contains(nouvelEtatAPartirDeListe)){
+						etatsAConsiderer.add(nouvelEtatAPartirDeListe);
+					}
+				}
+			}
+		}
+		return new Automate(nouvelEtatInitial, nouveauxEtatsFinaux, nouveauxEtats);
+	}
 }

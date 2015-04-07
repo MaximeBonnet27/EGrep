@@ -13,7 +13,7 @@ public class TestsA {
 
   @Test
   public void testA(){
-    Automate a = (EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleA()));
+    Automate a = Determinisation.recopiageDuCours((EpsilonTransitions.eliminer(AutomateFactory.createAutomateExempleA())));
     System.out.println(a);
     assertTrue(a.verifierMot("ab"));
     assertFalse(a.verifierMot("a"));

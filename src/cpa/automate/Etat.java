@@ -14,17 +14,31 @@ public class Etat implements Serializable{
 		transitions = new ArrayList<Transition>();
 	}
 
+	public Etat(Etat autre){
+		numero = autre.numero;
+		transitions = new ArrayList<Transition>();
+	}
+
+	public Etat(ArrayList<Etat> liste){
+		numero = compteur++;
+		transitions = new ArrayList<Transition>();
+		for(Etat e : liste){
+			for(Transition t : e.getTransitions()){
+				transitions.add(new Transition(this, t.getArrivee(), t.getEtiquette()));
+			}
+		}
+	}
 
 
 	public void addTransition(Transition t) {
 		transitions.add(t);
 	}
 
-  public void supprimerTransition(Transition t) {
-    transitions.remove(t);
-  }
+	public void supprimerTransition(Transition t) {
+		transitions.remove(t);
+	}
 
-	
+
 	public ArrayList<Transition> getTransitions() {
 		return transitions;
 	}  
@@ -58,6 +72,10 @@ public class Etat implements Serializable{
 		return numero;
 	}
 
+	public void setNumero(int numero){
+		this.numero = numero;
+	}
+
 	@Override
 	public Object clone(){
 		Etat clone = new Etat();
@@ -79,6 +97,5 @@ public class Etat implements Serializable{
 
 
 
-	
-	
+
 }
