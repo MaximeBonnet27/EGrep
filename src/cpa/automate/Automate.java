@@ -7,13 +7,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Automate implements Serializable {
 
 	private Etat etatInitial;
 	private ArrayList<Etat> etatsFinaux;
 	private ArrayList<Etat> etats;
-
+	
+	private HashMap<Integer, ArrayList<Etat>> verifies;
+	
 	public Automate(Etat etatInitial, ArrayList<Etat> etatsFinaux,
 			ArrayList<Etat> etats) {
 		super();
@@ -23,17 +26,22 @@ public class Automate implements Serializable {
 	}
 
 	public boolean verifierMot(String mot){
+		verifies = new HashMap<>();
 		return verifierMotRecurence(mot, etatInitial, 0);  
 	}
 
 	private boolean verifierMotRecurence(String mot, Etat etatActuel, int indexActuel){
+		if(verifies.get(indexActuel) == null){
+			verifies.put(indexActuel, new ArrayList<Etat>());
+		}
+		verifies.get(indexActuel).add(etatActuel);
 		if(isEtatFinal(etatActuel)){
 			return true;
 		}
 		if(indexActuel == mot.length()){
 			for(Transition transition : etatActuel.getTransitions()){
 				if(transition.isEpsilonTransition()){
-					return verifierMotRecurence(mot, transition.getArrivee(), indexActuel);
+					return verifies.get(indexActuel).contains(transition.getArrivee()) ? false : verifierMotRecurence(mot, transition.getArrivee(), indexActuel);
 				}
 				if(transition.isFinTransition()){
 					return true;
@@ -46,24 +54,34 @@ public class Automate implements Serializable {
 			boolean match = false;
 			for(Transition transition : etatActuel.getTransitions()){
 				if(transition.estDansEtiquette(caractere)){
-					match = match || verifierMotRecurence(mot, transition.getArrivee(), indexActuel + 1);
+					if(verifies.get(indexActuel + 1) == null){
+						verifies.put(indexActuel + 1, new ArrayList<Etat>());
+					}
+
+					match = match || (verifies.get(indexActuel + 1).contains(transition.getArrivee()) ? match : verifierMotRecurence(mot, transition.getArrivee(), indexActuel + 1));
 					if(match) return true;
 				}
 				else if(transition.isEpsilonTransition()){
-					match = match || verifierMotRecurence(mot, transition.getArrivee(), indexActuel);
+					match = match || (verifies.get(indexActuel).contains(transition.getArrivee()) ? match : verifierMotRecurence(mot, transition.getArrivee(), indexActuel));
 					if(match) return true;
 				}
 				else if(transition.isPointTransition()){
-					match = match || verifierMotRecurence(mot, transition.getArrivee(), indexActuel + 1);
+					if(verifies.get(indexActuel + 1) == null){
+						verifies.put(indexActuel + 1, new ArrayList<Etat>());
+					}
+					match = match || (verifies.get(indexActuel + 1).contains(transition.getArrivee()) ? match : verifierMotRecurence(mot, transition.getArrivee(), indexActuel + 1));
 					if(match) return true;
 				}
 				else if(transition.isDebutTransition()){
-					match = match || (indexActuel == 0) && verifierMotRecurence(mot, transition.getArrivee(), indexActuel);
+					match = match || (indexActuel == 0) && (verifies.get(indexActuel).contains(transition.getArrivee()) ? match : verifierMotRecurence(mot, transition.getArrivee(), indexActuel));
 					if(match) return true;
 				}
 			}
 			if (!match){
-				return verifierMotRecurence(mot, etatInitial, indexActuel+1);
+				if(verifies.get(indexActuel + 1) == null){
+					verifies.put(indexActuel + 1, new ArrayList<Etat>());
+				}
+				return (verifies.get(indexActuel + 1).contains(etatInitial) ? false : verifierMotRecurence(mot, etatInitial, indexActuel+1));
 			}
 			else return true;
 		}
@@ -106,7 +124,6 @@ public class Automate implements Serializable {
 	public Object clone() {
 		Object obj = null;
 		try {
-			// Write the object out to a byte array
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			ObjectOutputStream out = new ObjectOutputStream(bos);
 			out.writeObject(this);
