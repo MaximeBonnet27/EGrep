@@ -9,26 +9,37 @@ public class Etat implements Serializable{
 	private int numero;
 	private ArrayList<Transition> transitions;
 
+	private boolean listeEtat;
+	private ArrayList<Integer> numeros;
+
 	public Etat() {
 		numero = compteur++;
 		transitions = new ArrayList<Transition>();
+		listeEtat = false;
 	}
 
 	public Etat(Etat autre){
 		numero = autre.numero;
 		transitions = new ArrayList<Transition>();
+		listeEtat = false;
 	}
 
 	public Etat(ArrayList<Etat> liste){
 		numero = compteur++;
 		transitions = new ArrayList<Transition>();
+		numeros = new ArrayList<Integer>();
 		for(Etat e : liste){
 			for(Transition t : e.getTransitions()){
 				transitions.add(new Transition(this, t.getArrivee(), t.getEtiquette()));
 			}
+			numeros.add(e.numero);
 		}
+		listeEtat = true;
 	}
 
+	public boolean isListeEtat() {
+		return listeEtat;
+	}
 
 	public void addTransition(Transition t) {
 		transitions.add(t);
@@ -94,14 +105,19 @@ public class Etat implements Serializable{
 		return sb.toString();
 	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if(obj instanceof Etat){
-      return numero == ((Etat)obj).getNumero() || transitions.equals(transitions);
-    }
-    return false;
-  }
-
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (obj instanceof Etat) {
+//			Etat e = (Etat) obj;
+//			if(listeEtat && e.isListeEtat()){
+//				return numeros.equals(e.numeros);
+//			}else if(!listeEtat && !e.isListeEtat()){
+//				return numero == e.numero;
+//			}
+//			return false;
+//		}
+//		return false;
+//	}
 
 
 

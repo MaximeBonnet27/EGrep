@@ -56,7 +56,7 @@ public class EpsilonTransitions {
 			}
 			ArrayList<Etat> aSupprimer = new ArrayList<Etat>();
 			for(Etat e0 : a.getEtats()){
-				if(a.getEtatInitial().equals(e0))
+				if(a.isEtatInitial(e0))
 					continue;
 				boolean supp = true;
 				for(Etat e : a.getEtats()){

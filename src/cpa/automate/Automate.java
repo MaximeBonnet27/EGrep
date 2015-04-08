@@ -11,23 +11,37 @@ import java.util.HashMap;
 
 public class Automate implements Serializable {
 
-	private Etat etatInitial;
+	private ArrayList<Etat> etatsInitiaux;
 	private ArrayList<Etat> etatsFinaux;
 	private ArrayList<Etat> etats;
 	
 	private HashMap<Integer, ArrayList<Etat>> verifies;
 	
-	public Automate(Etat etatInitial, ArrayList<Etat> etatsFinaux,
+	public Automate(ArrayList<Etat> etatInitiaux, ArrayList<Etat> etatsFinaux,
 			ArrayList<Etat> etats) {
 		super();
-		this.etatInitial = etatInitial;
+		this.etatsInitiaux = etatInitiaux;
+		this.etatsFinaux = etatsFinaux;
+		this.etats = etats;
+	}
+	
+	public Automate(Etat ei,ArrayList<Etat> etatsFinaux,
+			ArrayList<Etat> etats) {
+		
+		this.etatsInitiaux = new ArrayList<Etat>();
+		etatsInitiaux.add(ei);
 		this.etatsFinaux = etatsFinaux;
 		this.etats = etats;
 	}
 
 	public boolean verifierMot(String mot){
 		verifies = new HashMap<>();
-		return verifierMotRecurence(mot, etatInitial, 0);  
+		boolean match = false;
+		for(Etat ei : etatsInitiaux){
+			match = match || verifierMotRecurence(mot, ei, 0);  
+			if(match) return true;
+		}
+		return match;
 	}
 
 	private boolean verifierMotRecurence(String mot, Etat etatActuel, int indexActuel){
@@ -81,14 +95,22 @@ public class Automate implements Serializable {
 				if(verifies.get(indexActuel + 1) == null){
 					verifies.put(indexActuel + 1, new ArrayList<Etat>());
 				}
-				return (verifies.get(indexActuel + 1).contains(etatInitial) ? false : verifierMotRecurence(mot, etatInitial, indexActuel+1));
+				boolean retour = false;
+				for(Etat ei : etatsInitiaux){
+					retour = retour || (verifies.get(indexActuel + 1).contains(ei) ? false : verifierMotRecurence(mot, ei, indexActuel+1));
+				}
+				return retour;
 			}
 			else return true;
 		}
 	}
 
-	public Etat getEtatInitial() {
-		return etatInitial;
+	public ArrayList<Etat> getEtatsInitiaux() {
+		return etatsInitiaux;
+	}
+	
+	public Etat getEtatInitial(){
+		return etatsInitiaux.get(0);
 	}
 
 	public ArrayList<Etat> getEtatsFinaux() {
@@ -104,14 +126,20 @@ public class Automate implements Serializable {
 		return etatsFinaux.contains(etat);
 	}
 
+
+	public boolean isEtatInitial(Etat etat){
+		return etatsInitiaux.contains(etat);
+	}
+
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		for(Etat e : etats){
-			if(e == etatInitial){
+			if(isEtatInitial(e)){
 				builder.append("-> ");
 			}
-			if(etatsFinaux.contains(e)){
+			if(isEtatFinal(e)){
 				builder.append("* ");
 			}
 			builder.append(e.toString());

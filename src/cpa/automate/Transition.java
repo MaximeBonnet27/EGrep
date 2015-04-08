@@ -77,19 +77,8 @@ public class Transition implements Serializable{
 	}
 
 	public boolean estDansEtiquette(char caractere) {
-		return etiquettes.contains(caractere);
+		return etiquettes.contains(caractere) || isPointTransition();
 	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj instanceof Transition) {
-      Transition t = (Transition) obj;
-      return etiquettes.equals(t.getEtiquette()) && depart.equals(t.depart) && arrivee.equals(t.arrivee);
-    }
-    return false;
-  }
-
-	
-	
 
 }

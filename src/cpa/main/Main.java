@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
+import cpa.algorithmes.Determinisation;
 import cpa.algorithmes.EpsilonTransitions;
 import cpa.automate.Automate;
 import cpa.parser.Parser;
@@ -25,7 +26,7 @@ public class Main {
 	public static void main(String[] args) {
 		String expr = args[0];
 		Parser parser = new Parser();
-		Automate a =  EpsilonTransitions.eliminer(parser.getAutomateFromString(expr));
+		Automate a =  Determinisation.compute(EpsilonTransitions.eliminer(parser.getAutomateFromString(expr)));
 		System.out.println(a);
 		if(args.length >= 2){
 			for(int i =1;i<args.length;i++){
