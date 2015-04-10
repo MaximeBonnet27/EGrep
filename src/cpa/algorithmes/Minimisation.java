@@ -17,19 +17,18 @@ import cpa.automate.Transition;
 public class Minimisation {
 
 	public static Automate brzozowski(Automate a){
-		return Minimisation.transpose(Minimisation.transpose(a));
-		//return Minimisation.transpose(Determinisation.compute(Minimisation.transpose(Determinisation.compute(a))));
+		return Determinisation.compute(Minimisation.transpose(Determinisation.compute(Minimisation.transpose(a))));
 	}
 
-	private static Automate transpose(Automate a) {
+	private static Automate transpose2(Automate a) {
 		ArrayList<Etat> nouveauxEtats = new ArrayList<Etat>();
 		ArrayList<Etat> nouveauxFinaux = new ArrayList<Etat>();
 		ArrayList<Etat> nouveauxInitiaux = new ArrayList<Etat>();
-		
+
 		System.out.println("ENTREE TRANSPOSE");
 		System.out.println(a);
 		System.out.println("*****************");
-		
+
 		Stack<Etat> etatsATraiter = new Stack<Etat>();
 		etatsATraiter.addAll(a.getEtatsFinaux());
 		while(!etatsATraiter.isEmpty()){
@@ -63,6 +62,38 @@ public class Minimisation {
 		Automate b = new Automate(nouveauxInitiaux, nouveauxFinaux, nouveauxEtats); 
 		System.out.println("MIN => " + b);
 		return b;
+	}
+
+	public static Automate transpose(Automate a){
+		Automate b = (Automate) a.clone();
+
+		for(Etat e : a.getEtats()){
+			e.setTransitions(new ArrayList<Transition>());
+		}
+		for(Etat e : b.getEtats()){
+			ArrayList<Transition> nouvelleListe = new ArrayList<>();
+			for(Transition t : e.getTransitions()){
+				nouvelleListe.add(new Transition(t.getArrivee(), t.getDepart(), t.getEtiquette()));
+			}
+			for(Etat nouveauE : a.getEtats()){
+				for(Transition nouvelleTransition : nouvelleListe){
+					if(nouvelleTransition.getDepart().getNumero() == nouveauE.getNumero()){
+						nouveauE.addTransition(nouvelleTransition);
+					}
+				}
+			}
+		}
+
+		ArrayList<Etat> nouveauxFinaux = new ArrayList<>();
+		nouveauxFinaux = a.getEtatsInitiaux();
+
+		ArrayList<Etat> nouveauxInitiaux = new ArrayList<>();
+		nouveauxInitiaux = a.getEtatsFinaux();
+		a.setFinaux(nouveauxFinaux);
+		a.setInitiaux(nouveauxInitiaux);
+
+
+		return a;
 	}
 
 }

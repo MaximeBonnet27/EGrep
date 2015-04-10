@@ -186,5 +186,19 @@ public class Automate implements Serializable {
 
 	}
 
+	/**
+	 * @param nouveauxFinaux
+	 */
+	public void setFinaux(ArrayList<Etat> nouveauxFinaux) {
+		this.etatsFinaux = nouveauxFinaux;
+	}
+
+	/**
+	 * @param nouveauxInitiaux
+	 */
+	public void setInitiaux(ArrayList<Etat> nouveauxInitiaux) {
+		this.etatsInitiaux = nouveauxInitiaux;
+	}
+
 
 }

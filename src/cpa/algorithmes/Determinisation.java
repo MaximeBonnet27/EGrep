@@ -18,7 +18,6 @@ public class Determinisation {
 
 	public static Automate compute(Automate a) {
 		if(estDeterministe(a)){
-			System.out.println("DET => " + a);
 			return a;
 		}
 		Stack<Etat> etatsATraiter = new Stack<Etat>();
@@ -27,7 +26,6 @@ public class Determinisation {
 		etatsATraiter.addAll(a.getEtatsInitiaux());
 		nouveauxEtats.addAll(a.getEtatsInitiaux());
 		while (!etatsATraiter.empty()) {
-			System.out.println(etatsATraiter.size());
 			Etat e = etatsATraiter.pop();
 			for (char c = (char) 32; c <= (char) 126; c++) {
 				Etat e2;
@@ -70,7 +68,6 @@ public class Determinisation {
 		
 		Automate b = new Automate(a.getEtatsInitiaux(), nouveauxEtatsFinaux,
 				nouveauxEtats);
-		System.out.println("DET => " + b);
 		return b;
 	}
 	

@@ -27,12 +27,11 @@ public class Main {
 		String expr = args[0];
 		Parser parser = new Parser();
 		Automate a =  Determinisation.compute(EpsilonTransitions.eliminer(parser.getAutomateFromString(expr)));
-		System.out.println(a);
 		if(args.length >= 2){
 			for(int i =1;i<args.length;i++){
 				String filename = args[i];
 				BufferedReader br = null;
-				System.out.println("Fichier "+filename);
+				System.out.println("Fichier "+ filename + " : ");
 				try {
 					br = new BufferedReader(new FileReader(filename));
 					String line = br.readLine();
@@ -55,7 +54,8 @@ public class Main {
 				Scanner sc = new Scanner(System.in);
 
 				String str = sc.nextLine();
-				if(sc.equals("")){
+				
+				if(sc == null || sc.equals("")){
 					break;
 				}
 				if(a.verifierMot(str)){

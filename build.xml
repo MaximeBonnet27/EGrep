@@ -8,26 +8,27 @@
 		<mkdir dir="${build}" />
 		<mkdir dir="src/cpa/parser" />
 	</target>
-	
-<target name="parse">
-	<exec executable="/bin/bash">
-		<arg value="scriptParse.sh" />
-	</exec>
-</target>
 
-<target name="compile" depends="clean, init, parse">
-        <javac  debug="true" srcdir="${src}" excludes="" destdir="${build}"
-            includeantruntime="false" classpath="${build}/:${jars}/junit-4.11.jar:${jars}/hamcrest-all-1.3.jar" />
-</target>
+	<target name="parse">
+		<exec executable="/bin/bash">
+			<arg value="scriptParse.sh" />
+		</exec>
+	</target>
+
+	<target name="compile" depends="clean, init, parse">
+		<javac debug="true" srcdir="${src}" excludes="" destdir="${build}"
+			includeantruntime="false"
+			classpath="${build}/:${jars}/junit-4.11.jar:${jars}/hamcrest-all-1.3.jar" />
+	</target>
 	
-	 <target name="clean">
-	        <delete verbose="true"> <!-- Remove all *~ files -->
-		   <fileset dir="${basedir}" defaultexcludes="no">
-	             <include name="**/*~"/>
-	           </fileset>
-	        </delete>
-		<delete dir="${build}"/>
-	 	<delete dir="${src}/cpa/parser"/>
-	  </target>
+	<target name="clean">
+		<delete verbose="true"> <!-- Remove all *~ files -->
+			<fileset dir="${basedir}" defaultexcludes="no">
+				<include name="**/*~" />
+			</fileset>
+		</delete>
+		<delete dir="${build}" />
+		<delete dir="${src}/cpa/parser" />
+	</target>
 
 </project>

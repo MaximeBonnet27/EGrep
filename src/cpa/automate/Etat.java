@@ -105,6 +105,13 @@ public class Etat implements Serializable{
 		return sb.toString();
 	}
 
+	/**
+	 * @param nouvelleListe
+	 */
+	public void setTransitions(ArrayList<Transition> nouvelleListe) {
+		this.transitions = nouvelleListe;
+	}
+
 //	@Override
 //	public boolean equals(Object obj) {
 //		if (obj instanceof Etat) {

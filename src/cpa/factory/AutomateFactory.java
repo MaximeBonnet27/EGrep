@@ -2,6 +2,9 @@ package cpa.factory;
 
 import java.util.ArrayList;
 
+import cpa.algorithmes.Determinisation;
+import cpa.algorithmes.EpsilonTransitions;
+import cpa.algorithmes.Minimisation;
 import cpa.automate.Automate;
 import cpa.automate.Etat;
 import cpa.automate.Transition;
@@ -9,6 +12,13 @@ import cpa.parser.Parser;
 
 public class AutomateFactory {
 
+	public static Automate traitement(Automate a){
+		a = EpsilonTransitions.eliminer(a);
+		a = Determinisation.compute(a);
+		a = Minimisation.brzozowski(a);
+		return a;
+	}
+	
 	public static Transition createEpsilonTransition(Etat depart, Etat arrivee){
 		Transition t = new Transition(depart, arrivee, Transition.epsilon);
 		depart.addTransition(t);
