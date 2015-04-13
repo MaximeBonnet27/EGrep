@@ -53,9 +53,9 @@ public class Determinisation {
 				}
 			}
 		}
-		
+
 		// CLEANUP
-		
+
 		for(Etat e : nouveauxEtats){
 			ArrayList<Transition> toRemove = new ArrayList<Transition>();
 			for(Transition t : e.getTransitions()){
@@ -65,12 +65,12 @@ public class Determinisation {
 			}
 			e.getTransitions().removeAll(toRemove);
 		}
-		
+
 		Automate b = new Automate(a.getEtatsInitiaux(), nouveauxEtatsFinaux,
 				nouveauxEtats);
 		return b;
 	}
-	
+
 	public static boolean estDeterministe(Automate a){
 		int cpt;
 		for (char c = (char) 32; c <= (char) 126; c++) {

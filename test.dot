@@ -1,19 +1,13 @@
 digraph automate{
-size="8,10";S0 -> S1[color=black, style=solid, label="a "];
-S1 -> S3[color=black, style=solid, label="b "];
-S1 -> S3[color=black, style=solid, label="b "];
-S1 -> S0[color=black, style=solid, label="a "];
-S3 -> S1[color=black, style=solid, label="b "];
-S3 -> S1[color=black, style=solid, label="b "];
-S3 -> S1[color=black, style=solid, label="b "];
-S0 -> S1[color=black, style=solid, label="a "];
-S3 -> S1[color=black, style=solid, label="b "];
-S3 -> S1[color=black, style=solid, label="b "];
-S3 -> S1[color=black, style=solid, label="b "];
-S1 -> S3[color=black, style=solid, label="b "];
-S1 -> S3[color=black, style=solid, label="b "];
-S1 -> S0[color=black, style=solid, label="a "];
-S1 -> S3[color=black, style=solid, label="b "];
-S1 -> S3[color=black, style=solid, label="b "];
-S1 -> S0[color=black, style=solid, label="a "];
+size="8,10";S17 -> S17[color=black, style=solid, label="a "];
+S17 -> S21[color=black, style=solid, label="b "];
+S17 -> S25[color=black, style=solid, label="a "];
+S18 -> S17[color=black, style=solid, label="a "];
+S18 -> S21[color=black, style=solid, label="b "];
+S18 -> S25[color=black, style=solid, label="a "];
+S21 -> S21[color=black, style=solid, label="b "];
+S21 -> S25[color=black, style=solid, label="a "];
+S25 -> S27[color=black, style=solid, label="b "];
+S27 -> S29[color=black, style=solid, label="b "];
+S29 -> S31[color=black, style=solid, label="b "];
 }

@@ -18,12 +18,9 @@ public class MainDotFile {
 
 	public static void main(String[] args) {
 		Parser p = new Parser();
-		Automate a = p.getAutomateFromString("F");
-//	 AutomateFactory.traitement(a);
-		System.out.println(a);
-		System.out.println("******************************");
-		System.out.println(Minimisation.transpose(a));
-    System.out.println(Minimisation.transpose(a));
+		Automate a = p.getAutomateFromString("Blacka gic");
+		a = EpsilonTransitions.eliminer(a);
+		System.out.println(a.toDotFile());
 	}
-	
+
 }

@@ -34,10 +34,10 @@ class Yylex {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\2\2\2\0\1\2\22\0\1\2\3\0\1\4\2\0\1\7"+
-    "\1\4\1\4\1\4\1\4\1\2\1\2\1\4\1\0\12\1\3\0"+
-    "\1\1\1\0\1\4\1\0\32\1\1\4\1\3\1\6\1\4\1\1"+
-    "\1\0\32\1\1\4\1\4\1\2\42\0\1\5\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff6f\0";
+    "\11\0\2\2\2\0\1\2\22\0\1\2\3\0\1\4\2\0\1\10"+
+    "\1\4\1\4\1\4\1\4\1\5\1\5\1\4\1\0\12\1\3\0"+
+    "\1\1\1\0\1\4\1\0\32\1\1\4\1\3\1\7\1\4\1\1"+
+    "\1\0\32\1\1\4\1\4\1\5\42\0\1\6\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff6f\0";
 
   /** 
    * Translates characters to character classes
@@ -50,10 +50,11 @@ class Yylex {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\3\1\1\4\1\0";
+    "\1\0\1\1\1\2\1\3\1\1\1\4\2\1\1\5"+
+    "\1\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[9];
+    int [] result = new int[10];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -78,11 +79,11 @@ class Yylex {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\10\0\10\0\10\0\20\0\30\0\40\0\10"+
-    "\0\50";
+    "\0\0\0\11\0\11\0\11\0\22\0\11\0\33\0\44"+
+    "\0\11\0\55";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[9];
+    int [] result = new int[10];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -105,11 +106,11 @@ class Yylex {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\4\1\6\1\2\1\7"+
-    "\13\0\2\10\11\0\1\4\7\0\1\11\10\0\1\4";
+    "\1\2\1\3\1\4\1\5\2\6\1\7\1\2\1\10"+
+    "\14\0\2\11\13\0\1\6\10\0\1\12\11\0\1\6";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[48];
+    int [] result = new int[54];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -147,10 +148,10 @@ class Yylex {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\3\11\3\1\1\11\1\0";
+    "\1\0\3\11\1\1\1\11\2\1\1\11\1\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[9];
+    int [] result = new int[10];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -557,19 +558,23 @@ public Yylex(java.io.Reader r, Parser yyparser){
           { //System.err.println("JFLEX : Unexpected char : '" + yytext() + "'");
 	return (int) yycharat(0);
           }
-        case 5: break;
+        case 6: break;
         case 2: 
           { yyparser.yylval = new ParserVal(yytext()); return Parser.ORD_CHAR;
           }
-        case 6: break;
-        case 3: 
-          { return (int) yycharat(0);
-          }
         case 7: break;
-        case 4: 
-          { yyparser.yylval = new ParserVal(yytext()); return Parser.QUOTED_CHAR;
+        case 3: 
+          { yyparser.yylval = new ParserVal(yytext()); return (int) Parser.ORD_CHAR;
           }
         case 8: break;
+        case 4: 
+          { return (int) yycharat(0);
+          }
+        case 9: break;
+        case 5: 
+          { yyparser.yylval = new ParserVal(yytext()); return Parser.QUOTED_CHAR;
+          }
+        case 10: break;
         default: 
           if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
             zzAtEOF = true;

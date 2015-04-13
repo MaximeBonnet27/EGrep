@@ -14,10 +14,8 @@ public class AutomateFactory {
 
 	public static Automate traitement(Automate a){
 		a = EpsilonTransitions.eliminer(a);
-		//a = Determinisation.compute(a);
-		//a = Minimisation.brzozowski(a);
-		Minimisation.transpose(a);
-		Minimisation.transpose(a);
+//		a = Determinisation.compute(a);
+//		a = Minimisation.brzozowski(a);
 		return a;
 	}
 	

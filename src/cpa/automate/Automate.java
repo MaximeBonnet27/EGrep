@@ -171,12 +171,39 @@ public class Automate implements Serializable {
 			cnfe.printStackTrace();
 		}
 		Automate a = (Automate) obj;
-//		for(Etat e : a.etats){
-//		  e.setNumero(Etat.compteur++ + e.getNumero());
-//		}
+		for(Etat e : a.etats){
+		  e.setNumero(Etat.compteur++);
+		}
 		return a; 
        	
 	}
+	
+	public Object clone2() {
+		Object obj = null;
+		try {
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ObjectOutputStream out = new ObjectOutputStream(bos);
+			out.writeObject(this);
+			out.flush();
+			out.close();
+
+			// Make an input stream from the byte array and read
+			// a copy of the object back in.
+			ObjectInputStream in = new ObjectInputStream(
+					new ByteArrayInputStream(bos.toByteArray()));
+			obj = in.readObject();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		catch(ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		}
+		Automate a = (Automate) obj;
+		return a; 
+       	
+	}
+
 
 	public String toDotFile(){
 		StringBuilder sb = new StringBuilder();

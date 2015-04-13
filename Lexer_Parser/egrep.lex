@@ -22,6 +22,6 @@ SPACE = [ \n\r\t]
 {ORD_CHAR} {yyparser.yylval = new ParserVal(yytext()); return Parser.ORD_CHAR; }
 "^" | "$" | "(" | ")" | "*" | "." | "|" | "+" | "?" | "{" | "}" | "," | "[" | "]" | "-" {return (int) yycharat(0);}
 ']' {return (int) yycharat(0);}
-{SPACE} {return (int) yycharat(0);}
+{SPACE} {yyparser.yylval = new ParserVal(yytext()); return (int) Parser.ORD_CHAR;}
 [^] { //System.err.println("JFLEX : Unexpected char : '" + yytext() + "'");
 	return (int) yycharat(0); }
