@@ -65,6 +65,7 @@ public class TestsA {
   public void testF(){
     Automate a = AutomateFactory.createAutomateExempleF();
     a = AutomateFactory.traitement(a);
+    System.out.println(a);
     assertTrue(a.verifierMot("F"));
     assertTrue(a.verifierMot("aaaF"));
   }

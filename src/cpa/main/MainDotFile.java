@@ -18,11 +18,12 @@ public class MainDotFile {
 
 	public static void main(String[] args) {
 		Parser p = new Parser();
-		Automate a = p.getAutomateFromString("A[qlksj]B");
+		Automate a = p.getAutomateFromString("F");
+//	 AutomateFactory.traitement(a);
 		System.out.println(a);
 		System.out.println("******************************");
-		AutomateFactory.traitement(a);
-		System.out.println(a);
+		System.out.println(Minimisation.transpose(a));
+    System.out.println(Minimisation.transpose(a));
 	}
 	
 }

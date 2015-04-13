@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Etat implements Serializable{
 
-	private static int compteur = 0;
+	public static int compteur = 0;
 	private int numero;
 	private ArrayList<Transition> transitions;
 
@@ -112,19 +112,19 @@ public class Etat implements Serializable{
 		this.transitions = nouvelleListe;
 	}
 
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (obj instanceof Etat) {
-//			Etat e = (Etat) obj;
-//			if(listeEtat && e.isListeEtat()){
-//				return numeros.equals(e.numeros);
-//			}else if(!listeEtat && !e.isListeEtat()){
-//				return numero == e.numero;
-//			}
-//			return false;
-//		}
-//		return false;
-//	}
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Etat) {
+			Etat e = (Etat) obj;
+			if(listeEtat && e.isListeEtat()){
+				return numeros.equals(e.numeros);
+			}else if(!listeEtat && !e.isListeEtat()){
+				return numero == e.numero;
+			}
+			return false;
+		}
+		return false;
+	}
 
 
 

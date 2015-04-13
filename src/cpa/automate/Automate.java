@@ -170,7 +170,11 @@ public class Automate implements Serializable {
 		catch(ClassNotFoundException cnfe) {
 			cnfe.printStackTrace();
 		}
-		return obj; 
+		Automate a = (Automate) obj;
+//		for(Etat e : a.etats){
+//		  e.setNumero(Etat.compteur++ + e.getNumero());
+//		}
+		return a; 
        	
 	}
 
