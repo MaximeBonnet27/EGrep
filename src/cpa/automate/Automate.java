@@ -210,6 +210,12 @@ public class Automate implements Serializable {
 		sb.append("digraph automate{\n");
 		sb.append("size=\"8,10\";");
 		for(Etat e : etats){
+			if(isEtatFinal(e)){
+				sb.append("S"+e.getNumero()+" [color=red]\n");
+			}
+			else if(isEtatInitial(e)){
+				sb.append("S" + e.getNumero()  +" [color=green]\n");
+			}
 			sb.append(e.toDotFile());
 		}
 		sb.append("}\n");
